@@ -11,12 +11,13 @@ namespace DevEnvironmentManager
     {
         public static void Run(string flutterFolder)
         {
-            ProcessStartInfo psi = new ProcessStartInfo("flutter.bat");
-            psi.UseShellExecute = false;
+            ProcessStartInfo psi = new ProcessStartInfo("cmd");
+            psi.UseShellExecute = true;
             psi.CreateNoWindow = false;
-            psi.Arguments = "doctor";
+            psi.Arguments = "/c flutter doctor";
             psi.WorkingDirectory = Path.Combine( flutterFolder, "flutter\\bin");
-            Process.Start(psi);
+            var p = Process.Start(psi);
+            p.WaitForExit();            
         }
     }
 }

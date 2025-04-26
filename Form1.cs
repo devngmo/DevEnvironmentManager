@@ -29,11 +29,13 @@ namespace DevEnvironmentManager
         {
             string flutterFolderName = ((ToolStripMenuItem)sender).Text;
             string flutterFolderPath = Path.Combine(AppSettings.Instance.FlutterSDKFolder, flutterFolderName);
+            string flutterBinPath = Path.Combine(flutterFolderPath, "flutter\\bin");
+
             notifyIcon1.ShowBalloonTip(1000, "Switch Flutter SDK", $"Use: {flutterFolderName}", ToolTipIcon.Info);
             
-            RegeditHelper.SetFlutterPath(flutterFolderPath);
+            RegeditHelper.SetFlutterPath(flutterBinPath);
             Thread.Sleep(500);
-            FlutterDoctor.Run(flutterFolderPath);
+            FlutterDoctor.Run(flutterBinPath);
         }
     }
 }
